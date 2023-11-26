@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/style.css') }}">
+    <!-- Bootstrap CSS v5.2.1 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+
+    <title>Proyecto Breast Cancer</title>
+    <!-- Favicons -->
+    <link href="{{ url_for('static', filename='img/logo1.png') }}" rel="icon">
+</head>
+
+<body>
+
+    <!-- ======= Header ======= -->
+    <header id="header" class="header d-flex align-items-center">
+        <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
+
+            <a href="{{ url_for('redirect_index') }}" class="logo d-flex align-items-center">
+                <img src="{{ url_for('static', filename='img/logo1.png') }}" alt="">
+                <h1>Breast Cancer<span>.</span></h1>
+            </a>
+
+        </div>
+    </header>
+    <!-- End Header -->
+
+
+    <main id="main">
+
+        <!-- ======= Breadcrumbs ======= -->
+        <div class="breadcrumbs d-flex align-items-center"
+            style="background-image: url('{{ url_for('static', filename='img/form.jpg') }}');">
+            <div class="container position-relative d-flex flex-column align-items-center" data-aos="fade">
+
+                <h2>TEST</h2>
+
+
+            </div>
+        </div><!-- End Breadcrumbs -->
+
+        <!-- ======= Contact Section ======= -->
+        <section id="contact" class="contact">
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <h4>This prediction was made using <a target="_blank" class="link-secondary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover" href="https://www.kaggle.com/datasets/uciml/breast-cancer-wisconsin-data">Breast Cancer Wisconsin</a>.</h4>
+                </div>
+            </div>
+            <hr>
+            <div class="row mt-2 text-center">
+                <div class="col-md-2"></div>
+                <div class="col-md-8">
+
+                    <div class="card preg">
+                        <div class="card-herader bg-primary">
+                            <h3 class="text-white">IMAGE</h3>
+                        </div>
+
+                        <form action="/procesar" class="p-3" id="formulario" method="post" enctype="multipart/form-data">
+                            
+                            <div class="form-floating mb-3">
+                                <input type="text" class="form-control" id="radius" name="radius" placeholder=" " required>
+                                <label for="radius">Radius Mean</label>
+                            </div>
+
+                            <div class="form-floating mb-3">
+                                <input type="text" class="form-control" id="texture" name="texture" placeholder=" " required>
+                                <label for="texture">Texture Mean</label>
+                            </div>
+                    
+                            <div class="form-floating mb-3">
+                                <input type="text" class="form-control" id="perimeter" name="perimeter" placeholder=" " required>
+                                <label for="perimeter">Perimeter Mean</label>
+                            </div>
+                    
+                            <div class="form-floating mb-3">
+                                <input type="text" class="form-control" id="area" name="area" placeholder=" " required>
+                                <label for="area">Area Mean</label>
+                            </div>
+
+                            <div class="form-floating mb-3">
+                                <input type="text" class="form-control" id="smoothness" name="smoothness" placeholder=" " required>
+                                <label for="smoothness">Smoothness Mean</label>
+                            </div>
+
+                            <div class="form-floating mb-3">
+                                <input type="text" class="form-control" id="compactness" name="compactness" placeholder=" " required>
+                                <label for="compactness">Compactness Mean</label>
+                            </div>
+                    
+                            <div class="form-floating mb-3">
+                                <input type="text" class="form-control" id="concavity" name="concavity" placeholder=" " required>
+                                <label for="concavity">Concavity Mean</label>
+                            </div>
+                    
+                            <div class="form-floating mb-3">
+                                <input type="text" class="form-control" id="concavepoints" name="concavepoints" placeholder=" " required>
+                                <label for="concavepoints">Concave Points Mean</label>
+                            </div>
+
+                            <div class="form-floating mb-3">
+                                <input type="text" class="form-control" id="symmetry" name="symmetry" placeholder=" " required>
+                                <label for="symmetry">Symmetry Mean</label>
+                            </div>
+                    
+                            <div class="form-floating mb-3">
+                                <input type="text" class="form-control" id="fractaldimension" name="fractaldimension" placeholder=" " required>
+                                <label for="fractaldimension">Fractal Dimension Mean</label>
+                            </div>
+                    
+                            <button class="btn btn-primary mt-3" type="submit">Enviar</button>
+                        </form>
+
+
+                        {% if prediction %}
+                            <div class="container mt-5">
+                                <h1 class="mb-4">Resultados según el modelo preentrenado</h1>
+                            
+                                <!-- Logistic Regression -->
+                                <div class="card mb-3">
+                                    <div class="card-header">
+                                        Logistic Regression
+                                    </div>
+                                    <div class="card-body">
+                                        <p class="card-text">Prediction: {{ prediction[0] }}</p>
+                                    </div>
+                                </div>
+                            
+                                <!-- Random Forest -->
+                                <div class="card mb-3">
+                                    <div class="card-header">
+                                        Random Forest
+                                    </div>
+                                    <div class="card-body">
+                                        <p class="card-text">Prediction: {{ prediction[1] }}</p>
+                                    </div>
+                                </div>
+                            
+                                <!-- Decision Tree -->
+                                <div class="card mb-3">
+                                    <div class="card-header">
+                                        Decision Tree
+                                    </div>
+                                    <div class="card-body">
+                                        <p class="card-text">Prediction: {{ prediction[2] }}</p>
+                                    </div>
+                                </div>
+                            
+                                <!-- Vector Support Machine -->
+                                <div class="card mb-3">
+                                    <div class="card-header">
+                                        Vector Support Machine
+                                    </div>
+                                    <div class="card-body">
+                                        <p class="card-text">Prediction: {{ prediction[3] }}</p>
+                                    </div>
+                                </div>
+                            
+                            </div>
+                        {% endif %}
+                        
+
+                        <div class="btn-group p-3" role="group" aria-label="Basic outlined example">
+                            <a type="button" class="btn btn-outline-primary" href="{{ url_for('predecir') }}">Predict Image</a>
+                            <a type="button" class="btn btn-outline-primary" href="{{ url_for('procesar') }}">Predict Data</a>
+                          </div>
+
+                    </div>
+                </div>
+                <div class="col-md-2"></div>
+            </div>
+        </section><!-- End Contact Section -->
+
+    </main><!-- End #main -->
+
+
+
+
+    <!-- Bootstrap JavaScript Libraries -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+        integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous">
+        </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js"
+        integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz" crossorigin="anonymous">
+        </script>
+
+    <script>
+        
+    </script>
+</body>
+
+</html>
