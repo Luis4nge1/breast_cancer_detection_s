@@ -43,7 +43,7 @@
     top: calc(50% - 30px);
     left: calc(50% - 30px);
     border: 6px solid #fff;
-    border-color: #0049AA transparent #0049AA transparent;
+    border-color: #308aff transparent #308aff transparent;
     border-radius: 50%;
     width: 60px;
     height: 60px;
@@ -114,6 +114,12 @@ body {
     z-index: 0;
     transition-duration: 0.4s;
     height: 100vh;
+    object-fit: cover;
+}
+
+.carousel-item img{
+    height: 100vh;
+    object-fit: cover;
 }
 
 .hero .info {
@@ -152,7 +158,7 @@ body {
     display: block;
     width: 80px;
     height: 4px;
-    background: #0049AA;
+    background: #308aff;
     left: 0;
     right: 0;
     bottom: 0;
@@ -165,7 +171,7 @@ body {
 }
 
 .hero .info .btn-get-started {
-    font-family: #0049AA;
+    font-family: #308aff;
     font-weight: 500;
     font-size: 16px;
     letter-spacing: 1px;
@@ -175,13 +181,13 @@ body {
     transition: 0.2s;
     margin: 10px;
     color: #fff;
-    border: 2px solid #0049AA;
+    border: 2px solid #308aff;
     font-weight: bold;
     text-decoration: none;
 }
 
 .hero .info .btn-get-started:hover {
-    background: #0049AA;
+    background: #308aff;
 }
 
 .hero .carousel-control-next-icon,
